@@ -7,7 +7,7 @@ import Text "mo:base/Text";
 
 // when we create actor we dont necessarily need to give arguements, but when we are making actor class then we need to specify arguements too, else it gives errors.
 
-actor class NFT (name: Text, owner: Principal, content: [Nat8]) {
+actor class NFT (name: Text, owner: Principal, content: [Nat8]) = this {
   
   let itemName = name;
   let nftOwner = owner;
@@ -33,5 +33,9 @@ actor class NFT (name: Text, owner: Principal, content: [Nat8]) {
 // dfx canister call nft getName
 // dfx canister call nft getOwner
 // dfx canister call nft getAsset 
+
+  public query func getCanisterId() : async Principal {
+    return Principal.fromActor(this);
+  }
 
 };
